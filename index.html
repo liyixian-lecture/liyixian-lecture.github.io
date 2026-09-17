@@ -10,6 +10,7 @@
         }
         body {
             font-family: "SimSun", "宋体", "Songti SC", "Noto Serif CJK SC", serif;
+            font-size: 17px;
             line-height: 1.8;
             max-width: 720px;
             margin: 0 auto;
@@ -17,11 +18,16 @@
             color: #333;
             background-color: #fafafa;
         }
+        /* 导航栏 */
         nav {
             text-align: center;
             padding: 1.2rem 0;
             border-bottom: 1px solid #eaeaea;
             margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            background: #fafafa;
+            z-index: 10;
         }
         nav a {
             margin: 0 0.8rem;
@@ -32,16 +38,16 @@
         nav a:hover {
             text-decoration: underline;
         }
+        /* 个人简介区域，居中 */
         .profile {
             text-align: center;
             margin: 2rem 0 3rem;
         }
         .profile h1 {
             font-size: 2rem;
+            font-weight: bold;
             margin: 0 0 0.3rem;
             color: #24292e;
-            border: none;
-            padding: 0;
         }
         .profile .affiliation {
             color: #666;
@@ -60,17 +66,25 @@
         .profile .contact a {
             color: #6f2c91;
             text-decoration: none;
-            margin: 0 0.4rem;
+            margin: 0 0.2rem;
         }
         .profile .contact a:hover {
             text-decoration: underline;
         }
+        /* 板块标题 */
         h2 {
             margin-top: 2.5rem;
+            margin-bottom: 0.5rem;
             color: #6f2c91;
             font-size: 1.3rem;
+            font-weight: bold;
             border-bottom: 1px solid #eaeaea;
             padding-bottom: 0.4rem;
+            scroll-margin-top: 2rem;
+        }
+        /* 正文左对齐 */
+        main {
+            text-align: left;
         }
         a {
             color: #6f2c91;
@@ -79,6 +93,7 @@
         a:hover {
             text-decoration: underline;
         }
+        /* 讲义列表 */
         .lecture-list {
             list-style: none;
             padding: 0;
@@ -91,6 +106,7 @@
             border: 1px solid #e1e4e8;
             border-left: 3px solid #6f2c91;
             border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
         .lecture-list .lecture-title {
             font-weight: bold;
@@ -107,6 +123,34 @@
             font-size: 0.85rem;
             margin-top: 0.5rem;
         }
+        /* 学生工作与社团活动列表 */
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+        .service-list li {
+            background: #fff;
+            margin-bottom: 0.6rem;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #e1e4e8;
+            border-left: 3px solid #6f2c91;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        .service-role {
+            font-weight: bold;
+            color: #24292e;
+        }
+        .service-org {
+            color: #444;
+        }
+        .service-time {
+            color: #999;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+        /* 页脚 */
         .footer {
             margin-top: 4rem;
             padding-top: 1.2rem;
@@ -119,40 +163,58 @@
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html">首页</a>
         <a href="#notes">讲义</a>
         <a href="about.html">关于</a>
     </nav>
 
-    <div class="profile">
+    <header class="profile">
         <h1>李奕贤</h1>
-        <p class="affiliation">南京大学 · 金融工程</p>
-        <p class="interests">研究兴趣：机器学习、量化金融、凸优化</p>
+        <p class="affiliation">南京大学 · 金融工程 / 金融学</p>
+        <p class="interests">研究兴趣：机器学习、量化金融、凸性理论</p>
         <p class="contact">
-            <a href="mailto:1715922208@qq.com">1715922208@qq.com</a> ·
-            <a href="https://github.com/liyixian-lecture" target="_blank">GitHub</a>
+            Email: <a href="mailto:1715922208@com">1715922208@com</a> ·
+            GitHub: <a href="https://github.com/liyixian-lecture" target="_blank">liyixian-lecture</a>
         </p>
-    </div>
+    </header>
 
-    <h2 id="notes">讲义</h2>
-    <ul class="lecture-list">
-        <li>
-            <div class="lecture-title">第4周：内积、正交与相似度</div>
-            <div class="lecture-desc">内积、模长、夹角、正交、余弦相似度、Gram–Schmidt</div>
-            <div class="lecture-meta">
-                最后更新：2026-09-17 ·
-                <a href="lecture-v.04.pdf" target="_blank">下载 PDF</a>
-            </div>
-        </li>
-    </ul>
+    <main>
+        <section>
+            <h2>学生工作与社团</h2>
+            <ul class="service-list">
+                <li>
+                    <span class="service-role">副会长</span> ·
+                    <span class="service-org">南京大学经济学协会(NEA)</span>
+                    <span class="service-time">现任</span>
+                </li>
+                <li>
+                    <span class="service-role">副社长</span> ·
+                    <span class="service-org">南京大学国学社</span>
+                    <span class="service-time">现任</span>
+                </li>
+            </ul>
+        </section>
 
-    <div class="footer">
+        <section id="notes">
+            <h2>讲义</h2>
+            <ul class="lecture-list">
+                <li>
+                    <div class="lecture-title">v.04-9-17</div>
+                    <div class="lecture-desc">第一课时——第四课时上节</div>
+                    <div class="lecture-meta">
+                        最后更新：2026-09-17 ·
+                        <a href="lecture-04.pdf" target="_blank">下载 PDF</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
         © 2026 李奕贤 · 南京大学<br>
-        本页面为个人主页<br>
-        本讲义采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。
-    </div>
-
+        本讲义采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。<br>
+        最后更新：2026-09-17
+    </footer>
 </body>
 </html>
