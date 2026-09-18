@@ -1,170 +1,275 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李奕贤 · 机器学习数学基础</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "SimSun", "宋体", "Songti SC", "Noto Serif CJK SC", serif;
-            font-size: 17px;
-            line-height: 1.8;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 1.5rem 3rem;
-            color: #333;
-            background-color: #fafafa;
-        }
-        /* 导航栏 */
-        nav {
-            text-align: center;
-            padding: 1.2rem 0;
-            border-bottom: 1px solid #eaeaea;
-            margin-bottom: 2rem;
-            position: sticky;
-            top: 0;
-            background: #fafafa;
-            z-index: 10;
-        }
-        nav a {
-            margin: 0 0.8rem;
-            color: #6f2c91;
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        /* 个人简介区域，居中 */
-        .profile {
-            text-align: center;
-            margin: 2rem 0 3rem;
-        }
-        .profile h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0 0 0.3rem;
-            color: #24292e;
-        }
-        .profile .affiliation {
-            color: #666;
-            font-size: 1rem;
-            margin: 0.2rem 0;
-        }
-        .profile .interests {
-            color: #444;
-            font-size: 0.95rem;
-            margin: 0.6rem 0;
-        }
-        .profile .contact {
-            margin-top: 0.8rem;
-            font-size: 0.95rem;
-        }
-        .profile .contact a {
-            color: #6f2c91;
-            text-decoration: none;
-            margin: 0 0.2rem;
-        }
-        .profile .contact a:hover {
-            text-decoration: underline;
-        }
-        /* 板块标题 */
-        h2 {
-            margin-top: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: #6f2c91;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 0.4rem;
-            scroll-margin-top: 2rem;
-        }
-        /* 正文左对齐 */
-        main {
-            text-align: left;
-        }
-        a {
-            color: #6f2c91;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        /* 讲义列表 */
-        .lecture-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 1rem;
-        }
-        .lecture-list li {
-            background: #fff;
-            margin-bottom: 1rem;
-            padding: 1.2rem 1.4rem;
-            border: 1px solid #e1e4e8;
-            border-left: 3px solid #6f2c91;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        .lecture-list .lecture-title {
-            font-weight: bold;
-            font-size: 1.05rem;
-            color: #24292e;
-        }
-        .lecture-list .lecture-desc {
-            color: #666;
-            font-size: 0.92rem;
-            margin: 0.4rem 0;
-        }
-        .lecture-list .lecture-meta {
-            color: #999;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-        }
-        /* 学生工作与社团活动列表 */
-        .service-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 1rem;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李奕贤 · 机器学习数学基础</title>
+<style>
+    :root {
+        --nju: #6f2c91;
+        --nju-dark: #40174f;
+        --nju-mid: #55207a;
+        --nju-light: #8e4bb0;
+        --text: #333;
+        --muted: #666;
+        --faint: #999;
+        --line: #eaeaea;
+        --bg: #fafafa;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: "SimSun", "宋体", "Songti SC", "Noto Serif CJK SC", serif;
+        font-size: 17px;
+        line-height: 1.8;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+        color: var(--text);
+        background-color: var(--bg);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- 导航栏 ---------- */
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        text-align: center;
+        padding: 1.1rem 0;
+        margin-bottom: 2.5rem;
+        background: rgba(250, 250, 250, 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+    }
+    nav a {
+        margin: 0 0.9rem;
+        color: var(--nju);
+        text-decoration: none;
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        padding-bottom: 3px;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s ease;
+    }
+    nav a:hover,
+    nav a.active {
+        border-bottom-color: var(--nju);
+        text-decoration: none;
+    }
+
+    /* ---------- 个人简介 ---------- */
+    .profile {
+        text-align: center;
+        margin: 2rem 0 3.5rem;
+    }
+    .profile h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+        color: #24292e;
+        letter-spacing: 0.08em;
+    }
+    .profile h1::after {
+        content: "";
+        display: block;
+        width: 48px;
+        height: 3px;
+        margin: 0.95rem auto 0;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--nju), var(--nju-light));
+    }
+    .profile .affiliation {
+        color: var(--muted);
+        font-size: 1rem;
+        margin: 1.1rem 0 0.2rem;
+        letter-spacing: 0.03em;
+    }
+    .profile .interests {
+        color: #444;
+        font-size: 0.95rem;
+        margin: 0.6rem 0;
+    }
+    .profile .contact {
+        margin-top: 1rem;
+        font-size: 0.95rem;
+    }
+    .profile .contact a {
+        color: var(--nju);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(111, 44, 145, 0.25);
+        transition: border-color 0.2s ease;
+    }
+    .profile .contact a:hover {
+        border-bottom-color: var(--nju);
+        text-decoration: none;
+    }
+
+    /* ---------- 板块标题 ---------- */
+    h2 {
+        margin: 2.8rem 0 1rem;
+        color: var(--nju);
+        font-size: 1.22rem;
+        font-weight: bold;
+        letter-spacing: 0.06em;
+        padding-left: 0.75rem;
+        border-left: 4px solid var(--nju);
+        scroll-margin-top: 5rem;
+    }
+
+    main { text-align: left; }
+
+    a { color: var(--nju); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---------- 学生工作与社团 ---------- */
+    .service-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.2rem 0 0;
+        display: grid;
+        gap: 0.9rem;
+    }
+    .service-list li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.15rem 1.4rem 1.15rem 1.7rem;
+        border-radius: 12px;
+        color: #fff;
+        background: linear-gradient(135deg, #6f2c91 0%, #55207a 55%, #40174f 100%);
+        box-shadow: 0 4px 14px rgba(111, 44, 145, 0.22);
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .service-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.25) 100%);
+    }
+    .service-list li::after {
+        content: "";
+        position: absolute;
+        right: -45px;
+        top: -55px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.07);
+        pointer-events: none;
+    }
+    .service-list li:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 26px rgba(111, 44, 145, 0.32);
+    }
+    .service-main { min-width: 0; }
+    .service-role {
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #ffffff;
+        line-height: 1.5;
+    }
+    .service-org {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.82);
+        letter-spacing: 0.02em;
+        margin-top: 0.2rem;
+        line-height: 1.5;
+    }
+    .service-time {
+        flex-shrink: 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        color: #ffffff;
+        padding: 0.22rem 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        white-space: nowrap;
+    }
+
+    /* ---------- 讲义列表 ---------- */
+    .lecture-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.2rem 0 0;
+        display: grid;
+        gap: 0.9rem;
+    }
+    .lecture-list li {
+        background: #fff;
+        padding: 1.2rem 1.4rem;
+        border: 1px solid #e1e4e8;
+        border-left: 4px solid var(--nju);
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .lecture-list li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(111, 44, 145, 0.12);
+        border-color: #d9c7e6;
+        border-left-color: var(--nju-light);
+    }
+    .lecture-title {
+        font-weight: bold;
+        font-size: 1.05rem;
+        color: #24292e;
+        letter-spacing: 0.03em;
+    }
+    .lecture-desc {
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin: 0.4rem 0 0;
+    }
+    .lecture-meta {
+        color: var(--faint);
+        font-size: 0.85rem;
+        margin-top: 0.6rem;
+    }
+    .lecture-meta a { border-bottom: 1px solid rgba(111, 44, 145, 0.25); }
+    .lecture-meta a:hover { text-decoration: none; border-bottom-color: var(--nju); }
+
+    /* ---------- 页脚 ---------- */
+    .footer {
+        margin-top: 4.5rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.85rem;
+        color: #888;
+        text-align: center;
+        line-height: 1.9;
+    }
+    .footer a { color: var(--nju); }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 480px) {
+        body { font-size: 16px; padding: 0 1.1rem 2.5rem; }
+        .profile h1 { font-size: 1.7rem; }
+        nav a { margin: 0 0.55rem; font-size: 0.9rem; }
         .service-list li {
-            background: #fff;
-            margin-bottom: 0.6rem;
-            padding: 0.8rem 1.2rem;
-            border: 1px solid #e1e4e8;
-            border-left: 3px solid #6f2c91;
-            border-radius: 4px;
-            font-size: 0.95rem;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.7rem;
         }
-        .service-role {
-            font-weight: bold;
-            color: #24292e;
-        }
-        .service-org {
-            color: #444;
-        }
-        .service-time {
-            color: #999;
-            font-size: 0.85rem;
-            margin-left: 0.5rem;
-        }
-        /* 页脚 */
-        .footer {
-            margin-top: 4rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid #eaeaea;
-            font-size: 0.85rem;
-            color: #888;
-            text-align: center;
-            line-height: 1.7;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
+
     <nav>
-        <a href="index.html">首页</a>
+        <a href="index.html" class="active">首页</a>
         <a href="#notes">讲义</a>
         <a href="about.html">关于</a>
     </nav>
@@ -175,22 +280,26 @@
         <p class="interests">研究兴趣：机器学习、量化金融、凸性理论</p>
         <p class="contact">
             Email: <a href="mailto:1715922208@com">1715922208@com</a> ·
-            GitHub: <a href="https://github.com/liyixian-lecture" target="_blank">liyixian-lecture</a>
+            GitHub: <a href="https://github.com/liyixian-lecture" target="_blank" rel="noopener">liyixian-lecture</a>
         </p>
     </header>
 
     <main>
-        <section>
+        <section id="service">
             <h2>学生工作与社团</h2>
             <ul class="service-list">
                 <li>
-                    <span class="service-role">副会长</span> ·
-                    <span class="service-org">南京大学经济学协会(NEA)</span>
+                    <div class="service-main">
+                        <div class="service-role">副会长</div>
+                        <div class="service-org">南京大学经济学协会（NEA）</div>
+                    </div>
                     <span class="service-time">现任</span>
                 </li>
                 <li>
-                    <span class="service-role">副社长</span> ·
-                    <span class="service-org">南京大学国学社</span>
+                    <div class="service-main">
+                        <div class="service-role">副社长</div>
+                        <div class="service-org">南京大学国学社</div>
+                    </div>
                     <span class="service-time">现任</span>
                 </li>
             </ul>
@@ -201,10 +310,10 @@
             <ul class="lecture-list">
                 <li>
                     <div class="lecture-title">v.04-9-17</div>
-                    <div class="lecture-desc">第一课时——第四课时上节</div>
+                    <div class="lecture-desc">第一课时 —— 第四课时上节</div>
                     <div class="lecture-meta">
                         最后更新：2026-09-17 ·
-                        <a href="lecture-v.04.pdf" target="_blank">下载 PDF</a>
+                        <a href="lecture-v.04.pdf" target="_blank" rel="noopener">下载 PDF</a>
                     </div>
                 </li>
             </ul>
@@ -213,8 +322,9 @@
 
     <footer class="footer">
         © 2026 李奕贤 · 南京大学<br>
-        本讲义采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。<br>
+        本讲义采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。<br>
         最后更新：2026-09-17
     </footer>
+
 </body>
 </html>
