@@ -62,9 +62,9 @@
         text-decoration: none;
     }
 
-    /* ---------- 个人简介 ---------- */
+    /* ---------- 个人简介（左对齐修改） ---------- */
     .profile {
-        text-align: center;
+        text-align: left; /* 修改：改为左对齐 */
         margin: 2rem 0 3.5rem;
     }
     .profile h1 {
@@ -77,9 +77,9 @@
     .profile h1::after {
         content: "";
         display: block;
-        width: 48px;
+        width: 100%; /* 修改：横杠延长至 100% */
         height: 3px;
-        margin: 0.95rem auto 0;
+        margin: 0.95rem 0 0; /* 修改：去掉 auto，靠左对齐 */
         border-radius: 2px;
         background: linear-gradient(90deg, var(--nju), var(--nju-light));
     }
@@ -277,7 +277,7 @@
     <header class="profile">
         <h1>李奕贤</h1>
         <p class="affiliation">南京大学 · 金融工程</p>
-        <p class="interests">研究兴趣：机器学习、量化金融、凸性理论</p>
+        <p class="interests">研究兴趣: 凸性理论、量化金融、机器学习</p>
         <p class="contact">
             Email: <a href="mailto:1715922208@qq.com">1715922208@qq.com</a> ·
             GitHub: <a href="https://github.com/liyixian-lecture" target="_blank" rel="noopener">liyixian-lecture</a>
